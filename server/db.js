@@ -13,7 +13,9 @@ const path = require('path');
 const crypto = require('crypto');
 const { DatabaseSync } = require('node:sqlite');
 
-const DB_PATH = path.join(__dirname, '..', 'data', 'dev.db');
+const DB_PATH = (process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME)
+  ? path.join('/tmp', 'dev.db')
+  : path.join(__dirname, '..', 'data', 'dev.db');
 
 // Ensure data directory exists
 const dataDir = path.dirname(DB_PATH);
