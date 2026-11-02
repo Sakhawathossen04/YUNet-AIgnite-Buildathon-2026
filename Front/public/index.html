@@ -3,126 +3,313 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>আইনসহায় — বাংলাদেশ ডিজিটাল লিগ্যাল এইড পোর্টাল</title>
+  <title>AinShohay — DLAS · প্রয়োজনের সময় আইনি সহায়তা</title>
   <link rel="manifest" href="/manifest.json">
   <link rel="icon" href="/icon.svg" type="image/svg+xml">
-  <meta name="theme-color" content="#3D9970">
-  <meta name="description" content="বিনামূল্যে আইনি পরামর্শ, মধ্যস্থতা, আইনজীবী সহায়তা ও আবেদন ট্র্যাকিং — এক ঠিকানায়।">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9A%96%EF%B8%8F%3C/text%3E%3C/svg%3E">
+  <meta name="theme-color" content="#00543E">
+  <meta name="description" content="AinShohay — Five Doors, One Record. সমন্বিত ডিজিটাল আইনগত সহায়তা পোর্টাল (DLAS)। সম্পূর্ণ সরকারি খরচে বিনামূল্যে আইনি পরামর্শ, মধ্যস্থতা ও আইনজীবী নিয়োগ।">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Noto+Serif+Bengali:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-  <link rel="stylesheet" href="/css/styles.css?v=3">
+  <link rel="stylesheet" href="/css/styles.css?v=22">
+  <style>
+    /* Critical Mobile & Viewport Protection */
+    html, body {
+      overflow-x: hidden !important;
+      max-width: 100vw !important;
+      width: 100% !important;
+      position: relative !important;
+    }
+    .site-header {
+      width: 100% !important;
+      max-width: 100vw !important;
+      overflow-x: clip !important;
+    }
+    .header-inner {
+      width: 100% !important;
+      max-width: 100% !important;
+      box-sizing: border-box !important;
+    }
+    .btn-ref-cta, .header-cta-btn { display: none !important; }
+    .btn-ref-tel, #callBtn {
+      display: inline-flex !important;
+      align-items: center !important;
+      white-space: nowrap !important;
+      gap: 5px !important;
+      flex-direction: row !important;
+    }
+    @media (max-width: 992px) {
+      .desk-only,
+      .header-actions .desk-only,
+      .header-actions .header-login-btn,
+      .header-actions .header-cta-btn,
+      .header-actions .header-a11y-btn,
+      .header-actions #loginLink,
+      .header-actions #a11yToggle {
+        display: none !important;
+      }
+      .brand-text small {
+        display: none !important;
+      }
+      .nav-burger {
+        display: inline-flex !important;
+      }
+      .main-nav {
+        display: none !important;
+      }
+      .main-nav.open {
+        display: flex !important;
+      }
+      .mobile-nav-actions {
+        display: flex !important;
+      }
+      .gov-topbar-inner {
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+      }
+      .gov-helpline {
+        justify-content: center !important;
+      }
+      .gov-date {
+        display: none !important;
+      }
+    }
+    @media (max-width: 420px) {
+      .btn-ref-tel .tel-text {
+        display: none !important;
+      }
+      .btn-ref-tel {
+        padding: 5px 8px !important;
+        border-radius: 50% !important;
+        width: 34px !important;
+        height: 34px !important;
+        justify-content: center !important;
+      }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- ============ হেডার ============ -->
+  <!-- ============ সরকারি অফিশিয়াল টপ বার ============ -->
+  <div class="gov-topbar">
+    <div class="container gov-topbar-inner">
+      <div class="gov-brand">
+        <svg class="bd-seal" viewBox="0 0 100 100" width="18" height="18" aria-hidden="true">
+          <circle cx="50" cy="50" r="48" fill="#D32F2F" stroke="#E5A93B" stroke-width="3"/>
+          <circle cx="50" cy="28" r="28" fill="#00543E"/>
+          <path d="M50 26 L52 38 L64 38 L54 45 L58 57 L50 50 L42 57 L46 45 L36 38 L48 38 Z" fill="#E5A93B"/>
+        </svg>
+        <span class="gov-text">গণপ্রজাতন্ত্রী বাংলাদেশ সরকার / Government of the People's Republic of Bangladesh.</span>
+      </div>
+      <div class="gov-helpline">
+        <span id="govLiveDate" class="gov-date">বৃহস্পতিবার, ২৪ সেপ্টেম্বর, ২০২৬</span>
+        <span class="sep">|</span>
+        <a href="tel:16699" class="gov-phone" title="টোল-ফ্রি জাতীয় আইনি সহায়তা হেল্পলাইন">📞 ১৬৬৯৯</a>
+        <span class="sep">|</span>
+        <a href="tel:999" class="gov-phone" title="জাতীয় জরুরি সেবা">জরুরি: ৯৯৯</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ হ্যাকাথন বিল্ডাথন অফিসিয়াল রিবন ============ -->
+  <div class="buildathon-topbar">
+    <div class="container buildathon-topbar-inner">
+      <div class="buildathon-topbar-left">
+        <img src="/img/ostad-single-logo.svg" alt="Ostad" class="buildathon-mini-icon">
+        <span class="buildathon-pill">HACKATHON 2026</span>
+        <span class="buildathon-text"><strong>Built For Ostad Presents YUNet AIgnite Buildathon 2026</strong> <span class="hide-mobile">· National AI Hackathon for B2C Solutions</span></span>
+      </div>
+      <a href="https://yunet-aignite26.devpost.com/" target="_blank" rel="noopener noreferrer" class="buildathon-link">Devpost প্রজেক্ট ↗</a>
+    </div>
+  </div>
+
+  <!-- ============ প্রধান সাইট হেডার ============ -->
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="#/">
         <span class="brand-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <!-- Scales of Justice SVG -->
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 3v18M7 21h10M12 6l7 2M12 6L5 8M19 8l-2.5 6a3.5 3.5 0 0 1-5 0L19 8zM5 8l2.5 6a3.5 3.5 0 0 0 5 0L5 8z"/>
           </svg>
         </span>
         <span class="brand-text">
-          <strong data-i18n="brand">আইনসহায়</strong>
-          <small data-i18n="brandSub">বাংলাদেশ লিগ্যাল এইড পোর্টাল</small>
+          <strong data-i18n="brand">AinShohay</strong>
+          <small data-i18n="brandSub">ডিজিটাল আইনগত সহায়তা পোর্টাল · DLAS</small>
         </span>
       </a>
 
+      <!-- Buildathon Sticker Requirement -->
+      <a class="buildathon-navbar-sticker" href="https://yunet-aignite26.devpost.com/" target="_blank" rel="noopener noreferrer" title="Built For Ostad Presents YUNet AIgnite Buildathon 2026">
+        <img src="/img/built-for-buildathon-sticker.svg" alt="Built For Ostad Presents YUNet AIgnite Buildathon 2026" class="buildathon-sticker-img" />
+      </a>
+
       <nav class="main-nav" id="mainNav" aria-label="প্রধান মেনু">
-        <a href="#/" data-i18n="navHome">হোম</a>
-        <a href="#/topics" data-i18n="navLibrary">রিসোর্স লাইব্রেরি</a>
-        <a href="#/guide" data-i18n="navGuide">গাইড</a>
+        <a href="#/track" data-i18n="navTrack">আবেদন ট্র্যাক করুন</a>
+        <a href="#/topics" data-i18n="navLibrary">আইনি তথ্য</a>
+        <a href="#/services" data-i18n="navServices">সেবাসমূহ</a>
         <a href="#/offices" data-i18n="navOffices">অফিস খুঁজুন</a>
-        <a href="#/news" data-i18n="navNews">নিউজ ও ইভেন্ট</a>
-        <a href="#/help" data-i18n="navHelp">সহায়তা</a>
-        <a href="#/console" style="color:var(--brand);font-weight:700">🛠️ কনসোল</a>
+
+        <div class="mobile-nav-actions">
+          <a class="btn-ref-login mobile-login-btn" href="#/login" id="mobileLoginLink">👤 লগইন করুন</a>
+          <a class="header-dash-btn" href="#/dashboard" id="mobileDashLink">📊 আমার ড্যাশবোর্ড</a>
+          <a class="btn-ref-tel mobile-tel-btn" href="tel:16699">📞 হেল্পলাইন ১৬৬৯৯ (টোল-ফ্রি)</a>
+        </div>
       </nav>
 
       <div class="header-actions">
-        <a class="btn btn-outline btn-sm" href="tel:16699" id="callBtn">📞 ১৬৬৯৯</a>
-        <button class="icon-btn" id="langToggle" title="English" aria-label="ভাষা বদলান">বাং/EN</button>
-        <button class="icon-btn" id="themeToggle" title="ডার্ক/লাইট মোড" aria-label="থিম বদলান">🌙</button>
-        <button class="icon-btn" id="a11yToggle" title="প্রবেশগম্যতা" aria-label="প্রবেশগম্যতা">♿</button>
-        <a class="btn btn-primary btn-sm" href="#/login" id="loginLink">লগইন</a>
+        <button class="lang-switch-btn" id="langToggle" title="English" aria-label="ভাষা পরিবর্তন">文A English</button>
+        <a class="btn-ref-tel" href="tel:16699" id="callBtn" title="১৬৬৯৯ কল করুন" style="display:inline-flex;align-items:center;white-space:nowrap;gap:4px;">📞 <span class="tel-text">১৬৬৯৯</span></a>
+
+        <button class="icon-btn header-a11y-btn desk-only" id="a11yToggle" title="প্রবেশগম্যতা বিকল্প" aria-label="প্রবেশগম্যতা">♿</button>
+        <a class="btn-ref-login header-login-btn desk-only" href="#/login" id="loginLink">লগইন <span style="font-size:14px">👤</span></a>
+        <a class="header-dash-btn" href="#/dashboard" id="headerDashBtn" title="আমার ড্যাশবোর্ড — সব আবেদন এক জায়গায়" aria-label="ড্যাশবোর্ড">📊 <span>ড্যাশবোর্ড</span></a>
       </div>
 
-      <button class="icon-btn nav-burger" id="navBurger" aria-label="মেনু">☰</button>
+      <button class="icon-btn nav-burger" id="navBurger" aria-label="মোবাইল মেনু">☰</button>
     </div>
 
-    <!-- প্রবেশগম্যতা প্যানেল -->
+    <!-- প্রবেশগম্যতা (A11y) প্যানেল -->
     <div class="a11y-panel hidden" id="a11yPanel">
       <div class="container a11y-inner">
-        <span data-i18n="a11yTitle">প্রবেশগম্যতা</span>
-        <button id="fsDec" class="btn btn-outline btn-sm">A−</button>
-        <button id="fsInc" class="btn btn-outline btn-sm">A+</button>
+        <span data-i18n="a11yTitle"><strong>♿ প্রবেশগম্যতা বিকল্প:</strong></span>
+        <button id="fsDec" class="btn btn-outline btn-sm">ফন্ট ছোট (A−)</button>
+        <button id="fsInc" class="btn btn-outline btn-sm">ফন্ট বড় (A+)</button>
         <button id="contrastToggle" class="btn btn-outline btn-sm" data-i18n="contrast">হাই কনট্রাস্ট</button>
         <button id="a11yReset" class="btn btn-ghost btn-sm" data-i18n="reset">রিসেট</button>
       </div>
     </div>
   </header>
 
-  <!-- ============ মূল কনটেন্ট ============ -->
+  <!-- ============ মূল কনটেন্ট (SPA Outlet) ============ -->
   <main id="app" class="app-main"></main>
 
   <!-- ============ ফুটার ============ -->
   <footer class="site-footer">
-    <div class="container footer-grid">
+    <!-- পার্টনার ও হ্যাকাথন লোগো স্ট্রিপ (Ostad Presents YUNet AIgnite Buildathon 2026) -->
+    <div class="footer-partners-bar-light">
+      <div class="container partners-inner-light">
+        <!-- 1. Ostad Official Logo (Title Sponsor) -->
+        <a href="https://ostad.app/" target="_blank" rel="noopener noreferrer" class="partner-logo-item" title="Ostad — Title Sponsor">
+          <img src="/img/ostad-logo-full.png" alt="Ostad Logo" style="height:38px;width:auto;max-width:150px;object-fit:contain" />
+          <div style="font-size:0.75rem;font-weight:700;color:#0F172A;margin-top:5px;text-align:center;line-height:1.25">
+            Title Sponsor<br>Ostad
+          </div>
+        </a>
+
+        <!-- 2. Ostad Presents YUNet AIgnite Buildathon 2026 Center Badge -->
+        <a href="https://yunet-aignite26.devpost.com/" target="_blank" rel="noopener noreferrer" class="partner-logo-item" title="Ostad Presents YUNet AIgnite Buildathon 2026">
+          <div style="display:flex;align-items:center;gap:12px;background:#0F172A;color:#FFF;padding:10px 18px;border-radius:12px;box-shadow:0 2px 8px rgba(15,23,42,0.18);border:1.5px solid #F59E0B">
+            <img src="/img/ostad-single-logo.svg" alt="Ostad Icon" style="width:28px;height:28px" />
+            <div style="text-align:left">
+              <span style="display:block;font-size:0.65rem;font-weight:800;letter-spacing:1px;color:#F59E0B">BUILT FOR</span>
+              <strong style="display:block;font-size:0.88rem;color:#FFF;line-height:1.2">Ostad Presents YUNet AIgnite Buildathon 2026</strong>
+              <small style="display:block;font-size:0.7rem;color:#94A3B8">National AI Hackathon for B2C Solutions</small>
+            </div>
+          </div>
+        </a>
+
+        <!-- 3. Youth Upskill Network (YUNet) Official Logo -->
+        <a href="https://yunet.asia/" target="_blank" rel="noopener noreferrer" class="partner-logo-item" title="Youth Upskill Network - YUNet">
+          <img src="/img/yunet-logo.png" alt="Youth Upskill Network (YUNet)" style="height:40px;width:auto;max-width:150px;object-fit:contain" />
+          <div style="font-size:0.75rem;font-weight:700;color:#0F172A;margin-top:5px;text-align:center;line-height:1.25">
+            Organized by<br>Youth Upskill Network (YUNet)
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="container footer-grid" style="padding-top:2.5rem">
       <div>
-        <h4 data-i18n="brand">আইনসহায়</h4>
-        <p data-i18n="footerAbout">যারা নিজের আইনি সমস্যা নিজে সামলাতে চান, তাদের জন্য বিনামূল্যে আইনি তথ্য, ফরম ও সহায়তা। এই ওয়েবসাইট আইনি পরামর্শ নয় — আইনজীবীর বিকল্প নয়।</p>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:1rem">
+          <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="#FDE68A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3v18M7 21h10M12 6l7 2M12 6L5 8M19 8l-2.5 6a3.5 3.5 0 0 1-5 0L19 8zM5 8l2.5 6a3.5 3.5 0 0 0 5 0L5 8z"/>
+          </svg>
+          <strong style="font-size:1.35rem;color:#FFF;letter-spacing:0.5px">AinShohay</strong>
+        </div>
+        <p data-i18n="footerAbout" style="font-size:0.88rem;line-height:1.6">
+          AinShohay — জাতীয় আইনগত সহায়তা প্রদান সংস্থা (NLASO)-র তত্ত্বাবধানে পরিচালিত সমন্বিত ডিজিটাল আইনি সহায়তা ব্যবস্থা। দরিদ্র, অসহায় ও সুবিধা-বঞ্চিত নাগরিকদের জন্য সরকারি খরচে সম্পূর্ণ বিনামূল্যে আইনি সেবা ও ন্যায়বিচার নিশ্চিতকরণে প্রতিশ্রুত।
+        </p>
       </div>
       <div>
-        <h4 data-i18n="footerQuick">দ্রুত লিংক</h4>
-        <a href="#/guide" data-i18n="navGuide">গাইড</a>
-        <a href="#/apply" data-i18n="ctaApply">নতুন আবেদন</a>
-        <a href="#/track" data-i18n="ctaTrack">আবেদন ট্র্যাক</a>
-        <a href="#/complaint" data-i18n="navComplaint">অভিযোগ</a>
-        <a href="#/console">🛠️ প্রোভাইডার কনসোল</a>
+        <h4 data-i18n="footerQuick">দ্রুত সেবা লিংক</h4>
+        <a href="#/apply" data-i18n="ctaApply">নতুন আইনি আবেদন</a>
+        <a href="#/track" data-i18n="ctaTrack">আবেদন ট্র্যাকিং</a>
+        <a href="#/eligibility">যোগ্যতা যাচাই ক্যালকুলেটর</a>
+        <a href="#/services">সেবাসমূহ ও সুবিধা</a>
+        <a href="#/offices" data-i18n="navOffices">৬৪ জেলা অফিস ডিরেক্টরি</a>
+        <a href="#/dashboard" data-i18n="dashboard" style="color:#FDE68A;font-weight:700">👤 নাগরিক ড্যাশবোর্ড</a>
       </div>
       <div>
-        <h4 data-i18n="footerTopics">টপিক</h4>
-        <a href="#/topic/family">পরিবার</a>
-        <a href="#/topic/land">ভূমি ও সম্পত্তি</a>
-        <a href="#/topic/labour">শ্রম ও চাকরি</a>
-        <a href="#/topics" data-i18n="footerAllTopics">সব টপিক</a>
+        <h4 data-i18n="footerTopics">আইনি সহায়তার ক্ষেত্র</h4>
+        <a href="#/topic/family">পারিবারিক ও দেনমোহর বিরোধ</a>
+        <a href="#/topic/land">ভূমি ও খতিয়ান অধিকার</a>
+        <a href="#/topic/elder">পিতা-মাতার ভরণপোষণ আইন</a>
+        <a href="#/topic/civil">দেওয়ানি ও মধ্যস্থতা (ADR)</a>
+        <a href="#/topics" data-i18n="footerAllTopics">সব রিসোর্স লাইব্রেরি →</a>
       </div>
       <div>
-        <h4 data-i18n="footerContact">যোগাযোগ</h4>
-        <a href="tel:16699">📞 ১৬৬৯৯</a>
-        <a href="tel:109">🛡️ ১০৯ (নারী ও শিশু)</a>
-        <a href="tel:999">🚨 ৯৯৯ (জরুরি)</a>
-        <a href="#/help" data-i18n="navHelp">সহায়তা চ্যানেল</a>
+        <h4 data-i18n="footerContact">জরুরি হেল্পলাইন</h4>
+        <a href="tel:16699" style="font-weight:700;color:#FDE68A;font-size:1.05rem">📞 ১৬৬৯৯ (টোল-ফ্রি ২৪/৭)</a>
+        <a href="tel:109">🛡️ ১০৯ (নারী ও শিশু হেল্পলাইন)</a>
+        <a href="tel:999">🚨 ৯৯৯ (জাতীয় জরুরি সেবা)</a>
+        <a href="tel:333">🏢 ৩৩৩ (জাতীয় সেবা বাতায়ন)</a>
+        <span style="font-size:0.82rem;color:rgba(255,255,255,0.7);display:block;margin-top:6px">বিদেশ থেকে কল: +৮৮০ ৯৬১২ ৩৯ ১৬৬৯৯</span>
       </div>
     </div>
     <div class="container footer-bottom">
-      <span data-i18n="footerLine">আইন, বিচার ও সংসদ বিষয়ক মন্ত্রণালয়-অনুপ্রাণিত নাগরিক উদ্যোগ · ডেমো পোর্টাল ২০২৬</span>
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
+        <span data-i18n="footerLine">গণপ্রজাতন্ত্রী বাংলাদেশ সরকার · আইন, বিচার ও সংসদ বিষয়ক মন্ত্রণালয় · জাতীয় আইনগত সহায়তা প্রদান সংস্থা (NLASO)</span>
+        <span>© AinShohay ২০২৬ · সর্বস্বত্ব সংরক্ষিত</span>
+      </div>
     </div>
   </footer>
 
-  <!-- AI সহায়ক উইজেট -->
-  <button id="chatFab" class="chat-fab" aria-label="AI সহায়ক খুলুন">🤖</button>
-  <div id="chatWidget" class="chat-widget hidden" role="dialog" aria-label="AI সহায়ক">
+  <!-- ============ ভাসমান অ্যাকশন বাটন (Floating FABs) ============ -->
+  <div class="floating-fab-group">
+    <button id="chatFab" class="floating-fab fab-chat" aria-label="AinShohay AI আইনি সহকারী খুলুন" title="AinShohay AI">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+      </svg>
+    </button>
+    <button id="floatingA11yBtn" class="floating-fab fab-a11y" aria-label="প্রবেশগম্যতা বিকল্প" title="প্রবেশগম্যতা">
+      <span style="font-size:18px">♿</span>
+    </button>
+  </div>
+
+  <!-- AI চ্যাট উইজেট -->
+  <div id="chatWidget" class="chat-widget hidden" role="dialog" aria-label="AinShohay AI সহায়ক">
     <div class="chat-head">
-      <strong data-i18n="aiTitle">AI সহায়ক</strong>
-      <button id="chatClose" class="icon-btn" aria-label="বন্ধ করুন">✕</button>
+      <div style="display:flex;align-items:center;gap:8px">
+        <span style="font-size:1.3rem">🤖</span>
+        <div>
+          <strong data-i18n="aiTitle">AinShohay AI সহকারী</strong>
+          <small style="display:block;font-size:0.72rem;opacity:0.85">AinShohay · তাৎক্ষণিক আইনি দিকনির্দেশনা</small>
+        </div>
+      </div>
+      <button id="chatClose" class="icon-btn" aria-label="বন্ধ করুন" style="color:#fff;border-color:rgba(255,255,255,0.3)">✕</button>
     </div>
     <div class="chat-body" id="chatBody">
-      <div class="msg bot" data-i18n="aiHello">আসসালামু আলাইকুম! আমি AI সহায়ক। আপনার প্রশ্ন লিখুন — যেমন "আবেদন কীভাবে করব", "ফ্রি কি না", "জমির দখল"।</div>
+      <div class="msg bot" data-i18n="aiHello">
+        আসসালামু আলাইকুম! আমি ডিজিটাল আইনি সহকারী। সরকারি খরচে বিনামূল্যে আইনি সেবা প্রাপ্তি, আবেদন পদ্ধতি, যোগ্যতা বা আপনার আইনি সমস্যা সম্পর্কে যেকোনো প্রশ্ন করুন।
+      </div>
     </div>
     <form class="chat-input" id="chatForm">
-      <input id="chatText" type="text" data-i18n-ph="aiInputPh" placeholder="প্রশ্ন লিখুন…" autocomplete="off">
+      <input id="chatText" type="text" data-i18n-ph="aiInputPh" placeholder="আপনার আইনি প্রশ্ন লিখুন…" autocomplete="off">
       <button class="btn btn-primary btn-sm" type="submit" data-i18n="send">পাঠান</button>
     </form>
   </div>
 
   <div id="toast" class="toast hidden"></div>
 
+  <!-- Scripts -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
           integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-  <script src="/js/i18n.js?v=3"></script>
-  <script src="/js/console.js?v=3"></script>
-  <script src="/js/app.js?v=3"></script>
+  <script src="/js/i18n.js?v=9"></script>
+  <script src="/js/console.js?v=9"></script>
+  <script src="/js/app.js?v=21"></script>
 </body>
 </html>
