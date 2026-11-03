@@ -1,7 +1,7 @@
 # আইনসহায় (AinShohay) — বাংলাদেশ ডিজিটাল লিগ্যাল এইড পোর্টাল
 
 > **Built For Ostad Presents YUNet AIgnite Buildathon 2026**  
-> National AI Hackathon for B2C Solutions · [Devpost Project](https://yunet-aignite26.devpost.com/)
+> National AI Hackathon for B2C Solutions · [https://yu-net-a-ignite-buildathon-2026.vercel.app/]
 
 
 
